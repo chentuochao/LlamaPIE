@@ -16,7 +16,7 @@ def adapt_to_ASR(dialogue):
 # defaul model path ~/.cache/huggingface
 # model, tokenizer = load("mlx-community/Llama-3.2-1B-Instruct-bf16")
 # model_small, tokenizer_small = load("tuochao/Llama-3.2-1B-Proactive-Classifier-mlx-fp16")
-# model_small, tokenizer_small = load("tuochao/Llama-3.2-1B-Proactive-Classifier-Aug-mlx-fp16")
+model_small, tokenizer_small = load("tuochao/Llama-3.2-1B-Proactive-Classifier-Aug-mlx-fp16")
 
 # defaul model path ~/.cache/huggingface
 # model, tokenizer = load("mlx-community/Llama-3.2-1B-Instruct-bf16")
@@ -37,25 +37,25 @@ messages = [
     {'role': 'user', 'content': f'You have the following memory of facts for the user:\n{memory_text}'},
     {"role": "user", "content": curr_diag},
 ]
-conv_text2 = tokenizer_big.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
-conv_ids = tokenizer_big.encode(conv_text2, return_tensors='np')[0]
-print(conv_ids.shape)
+# conv_text2 = tokenizer_big.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
+# conv_ids = tokenizer_big.encode(conv_text2, return_tensors='np')[0]
+# print(conv_ids.shape)
 
 # response = generate(model_big, tokenizer_big, prompt=mx.array(conv_ids), verbose=True)
-prompt_cache2 = cache.make_prompt_cache(
-            model_big,
-            max_kv_size=None,
-        )
+# prompt_cache2 = cache.make_prompt_cache(
+#             model_big,
+#             max_kv_size=None,
+#         )
         
-inject_init_prompt(prompt=mx.array(conv_ids[:100]), model = model_big, prompt_cache = prompt_cache2)
-inject_init_prompt(prompt=mx.array(conv_ids[100:]), model = model_big, prompt_cache = prompt_cache2)
+# inject_init_prompt(prompt=mx.array(conv_ids[:100]), model = model_big, prompt_cache = prompt_cache2)
+# inject_init_prompt(prompt=mx.array(conv_ids[100:]), model = model_big, prompt_cache = prompt_cache2)
 
-tail = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
-tail_ids = tokenizer_big.encode(tail, return_tensors='np', add_special_tokens = False)[0]
+# tail = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+# tail_ids = tokenizer_big.encode(tail, return_tensors='np', add_special_tokens = False)[0]
 
-response = generate(model_big, tokenizer_big, prompt=mx.array(tail_ids), verbose=True, prompt_cache = prompt_cache2)
+# response = generate(model_big, tokenizer_big, prompt=mx.array(tail_ids), verbose=True, prompt_cache = prompt_cache2)
 
-exit(0)
+# exit(0)
 
 curr_diag = adapt_to_ASR(curr_diag)
 print(curr_diag)
@@ -191,9 +191,9 @@ def streaming_dialogue(dialogue, mem = ""):
                 whispers.append(response)
                 previous_whisper = " Agent: " + response
                 
-            if prompt_cache2[0].values is not None:
-                print("Cache2: ", prompt_cache2[0].values.shape, prompt_cache2[0].offset)
-                print("Conv Cache: ", conv_cache[0].values.shape, conv_cache[0].offset)
+            # if prompt_cache2[0].values is not None:
+            #     print("Cache2: ", prompt_cache2[0].values.shape, prompt_cache2[0].offset)
+            #     print("Conv Cache: ", conv_cache[0].values.shape, conv_cache[0].offset)
             prompt_cache2 = conv_cache
 
     return predictions, whispers
