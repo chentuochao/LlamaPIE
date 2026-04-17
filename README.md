@@ -46,6 +46,30 @@ To run our Ll on a single conversation sample, create a folder <INPUT_FOLDER> an
 Speaker1:  So, how are you doing? User: I'm pretty good. |SILENCE > |SILENCE > Doing well. |SILENCE > |SILENCE > |SILENCE > Speaker1: So, please tell me about yourself. |SILENCE > |SILENCE > Okay. |SILENCE > |SILENCE > |SILENCE > User: So, I guess... Have you looked at my resume, or should I? Alright. So, I guess I'm a course 6-7 here at MIT, which is computational biology. So, it's a mix of computer science and biology. And actually, that's where my interests lie, in applying, like, algorithmic kind of software engineering to data sets, dealing with genomics and biology. |SILENCE > |SILENCE > Some of the activities to do outside of school include Camp Kesem, which is a summer camp that we run for completely free for kids whose parents have cancer, as well as Amphibious Achievement, which is a high school tutoring program for inner-city kids in Boston. |SILENCE > |SILENCE > |SILENCE > So, |SILENCE > |SILENCE > my interests kind of lie both in a little bit of the healthcare. I imagined I was going to be a doctor growing up, and then I came to MIT, and I'm like, well, I can do engineering and still apply a lot of these same things and help a lot more people. |SILENCE > |SILENCE > |SILENCE > |SILENCE > Speaker1: So, please tell me about a time you demonstrated leadership. |SILENCE > |SILENCE > Okay. |SILENCE > |SILENCE > User: One of the things that we have to do for Camp Kesem is fundraise all the money to |SILENCE > |SILENCE > run the camp, which is over $50,000. |SILENCE > |SILENCE > And so, one of the things that I individually spearhead every year is called the Camp Kesem SAE Data Auction, where actually my fraternity and I go out and solicit |SILENCE > |SILENCE > |SILENCE > donations in the form of gift cards to raise money for a data auction where we actually sell dates. And then we use this money, obviously, and we donate it to Camp Kesem. So, I spearhead the entire event, and I kind of organize it into committees and groups, and I send the people out and make sure everything |SILENCE > |SILENCE > goes according to plan. |SILENCE > |SILENCE > Speaker1: Tell me about a time when you were working on a team and faced with a challenge. How did you solve that problem? |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > User: I guess the easiest team project I just had was |SILENCE > |SILENCE > last semester, I worked on a 6.005 project, which is software architecture. |SILENCE > |SILENCE > And we were put in a group of three people, and it was the standard, you know, we signed the contract, everyone's supposed to work equally, but it ended up being by the end of it that someone didn't put their fair share of work in. |SILENCE > |SILENCE > |SILENCE > Essentially, we talked to them, we didn't really get it out, and we actually had to go to some of the TAs. We got a little bit... |SILENCE > |SILENCE > And that kind of pushed them forward. So, I mean, I guess what I'm showing is I'm not afraid to go to the right methods. Authority weren't cases where the situation presents itself. Speaker1: Oh, yes. |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > Tell me about one of your weaknesses, and how you plan to overcome it. |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > User: Um... |SILENCE > |SILENCE > |SILENCE > I would say, for this job, I'm a little bit technically underprepared. |SILENCE > |SILENCE > |SILENCE > I've only taken the introductory software classes so far, as well as introductory bio classes. |SILENCE > |SILENCE > But I think, just from sheer interest and sheer effort, I'll be able to overcome these obstacles. |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > Speaker1: Now, why do you think we should hire you? |SILENCE > |SILENCE > |SILENCE > User: I'm very interested in the subject of computational biology, and I think that I'll be able to contribute a lot to this field. I've had a good amount of experience, and I think I'll be a solid intern. |SILENCE > |SILENCE > |SILENCE > |SILENCE > |SILENCE > Speaker1: Well, thank you.
 ```
 
+# 📊 On-device demo (MLX support in Apple silicon)
+Set up
+```
+# Set up conda from Apple official website
+https://developer.apple.com/metal/pytorch/
+
+# create conda env
+conda create -n llamapie python==3.11.9
+
+# install mps support torch 
+pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+
+# install mlx-ml from local folder
+cd ./edge/mlx-examples/llms/
+pip install -e .
+
+# downgrade transformers
+pip install transformers==4.48.0
+
+# run local demo
+cd edge/
+python text_demo.py
+```
+
 </details>
 
 (2) mem.txt(Optional): store the user's memory
